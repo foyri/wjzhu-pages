@@ -21,6 +21,6 @@ All Public Pages
   URL: {{ .Permalink }}
   Date: {{ .Date.Format "2006-01-02" }}
   Language: {{ .Params.content_lang | default $.Site.Params.defaultLang | default $.Site.LanguageCode | default "en" }}
-  Summary: {{ $summary | plainify | replaceRE "\\s+" " " | truncate 240 }}
+  Summary: {{ $summary | replaceRE "\\s+" " " | truncate 240 }}
 
 {{- end }}

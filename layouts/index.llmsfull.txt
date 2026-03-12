@@ -27,7 +27,7 @@ URL: {{ .Permalink }}
 Published: {{ .Date.Format "2006-01-02" }}
 Updated: {{ .Lastmod.Format "2006-01-02" }}
 Language: {{ .Params.content_lang | default $.Site.Params.defaultLang | default $.Site.LanguageCode | default "en" }}
-Summary: {{ $summary | plainify | replaceRE "\\s+" " " | truncate 280 }}
+Summary: {{ $summary | replaceRE "\\s+" " " | truncate 280 }}
 {{- with .Params.image }}
 Image: {{ . | absURL }}
 {{- end }}
