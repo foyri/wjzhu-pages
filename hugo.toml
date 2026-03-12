@@ -10,13 +10,13 @@ title = "Ju"
   term = ["HTML", "RSS"]
 
 [outputFormats.LLMS]
-  mediaType = "text/plain"
+  mediaType = "text/markdown"
   baseName = "llms"
   isPlainText = true
   notAlternative = true
 
 [outputFormats.LLMSFULL]
-  mediaType = "text/plain"
+  mediaType = "text/markdown"
   baseName = "llms-full"
   isPlainText = true
   notAlternative = true
