@@ -11,6 +11,7 @@
             {{ if .Params.author }} • {{ .Params.author }}{{ end }}
         </div>
     </header>
+    {{ partial "toc.html" . }}
     {{ .Content }}
 </article>
 {{ end }}

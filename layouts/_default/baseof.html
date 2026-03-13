@@ -993,6 +993,126 @@
             color: var(--muted);
             text-decoration: underline;
         }
+        /* Abstract Line-based TOC - Stabilized */
+        .toc-container {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px; /* Fixed container width */
+            font-family: var(--font-sans);
+            display: none;
+            z-index: 100;
+            pointer-events: none; /* Let clicks through container */
+        }
+
+
+        .toc-container nav {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            pointer-events: auto; /* Enable clicks for the nav */
+        }
+
+        .toc-container nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: right;
+            width: 100%;
+        }
+
+        .toc-container nav li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: block; /* Ensure vertical stacking */
+        }
+
+        .toc-container nav a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 0.72rem;
+            font-weight: 400;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            padding: 6px 0.5rem 6px 0;
+            margin-left: auto;
+        }
+
+        /* The "Line" indicator */
+        .toc-container nav a::after {
+            content: '';
+            display: block;
+            height: 1.5px;
+            background: var(--line-strong);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            /* Anchored width base */
+            width: 32px; 
+        }
+
+        /* Varying line widths based on heading levels */
+        /* H1/H2 level (top level) */
+        .toc-container nav > ul > li > a::after { width: 32px; }
+        /* H3 level (first nested) */
+        .toc-container nav li li a::after { width: 18px; }
+        /* H4 level (deeper nested) */
+        .toc-container nav li li li a::after { width: 10px; }
+
+        /* Text reveal logic */
+        .toc-container nav a span.toc-text {
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .toc-container nav a:hover {
+            color: var(--text);
+        }
+
+        .toc-container nav a:hover span.toc-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toc-container nav a:hover::after {
+            background: var(--text);
+            width: 40px !important;
+        }
+
+        /* Active State */
+        .toc-container nav a.active {
+            color: var(--text);
+        }
+
+        .toc-container nav a.active::after {
+            background: var(--accent-underline);
+            height: 2.5px;
+            width: 40px !important;
+        }
+
+        /* Titles ONLY appear on hover, never automatically */
+        .toc-container nav a.active span.toc-text {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        .toc-container nav a:hover span.toc-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @media (min-width: 1400px) {
+            .toc-container {
+                display: block;
+            }
+        }
     </style>
 
     <script>
@@ -1029,6 +1149,36 @@
                         setTimeout(() => document.body.removeChild(message), 500);
                     }, 1500);
                 });
+            }
+
+            // Scroll Spy for TOC
+            const tocLinks = document.querySelectorAll('.toc-container nav a');
+            const headings = Array.from(document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3'))
+                .filter(h => h.id);
+
+            if (tocLinks.length > 0 && headings.length > 0) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-10% 0px -80% 0px',
+                    threshold: 0
+                };
+
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute('id');
+                            tocLinks.forEach(link => {
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                } else {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, observerOptions);
+
+                headings.forEach(heading => observer.observe(heading));
             }
         });
     </script>

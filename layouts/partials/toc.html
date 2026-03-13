@@ -1,0 +1,5 @@
+{{ if .TableOfContents }}
+<aside class="toc-container">
+    {{ .TableOfContents | replaceRE "<a([^>]*)>([^<]*)</a>" "<a$1><span class=\"toc-text\">$2</span></a>" | safeHTML }}
+</aside>
+{{ end }}
