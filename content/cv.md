@@ -2,6 +2,7 @@
 title: "CV / Extra Information"
 date: 2026-03-13
 noindex: true
+hide_social: true
 draft: false
 sitemap:
   priority: 0
