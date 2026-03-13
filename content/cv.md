@@ -13,8 +13,8 @@ sitemap:
 
 - Phone: +86 193 0139 2676
 - Email: [zhuweijie717@163.com](mailto:zhuweijie717@163.com)
-- Website: [wjzhu.pages.dev(llm-friendly)](https://wjzhu.pages.dev(llm-friendly)/)
-- GitHub: [github.com/foyri](https://github.com/github.com/foyri)
+- Website: [wjzhu.pages.dev](https://wjzhu.pages.dev/)
+- GitHub: [foyri](https://github.com/foyri)
 
 
 # 个人简介
@@ -26,7 +26,7 @@ AI Native, 较早开始将AI发展纳入个人路径选择的考量
 
 如果您希望组织成员能随着AI的发展，不断适应变换职能，不局限于单一角色，在完成既定目标的同时一起用实践探索理论前沿，请考虑我。
 
-AI summary：fetch https://wjzhu.pages.dev/llms-full.txt and summarize
+AI summary：fetch and summarize https://wjzhu.pages.dev/cv
 
 # 教育背景
 ## **华东师范大学**, 哲学硕士 · 外国哲学(生物学与认知科学理论方向)
