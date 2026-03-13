@@ -2,7 +2,7 @@
 title: "The possibility of philosophy revolution by analoging it with scientific revolution"
 date: 2025-04-27
 description: "Demonstrating the possibility of philosophy revolution by analoging it with scientific revolution."
-author: "Jay"
+author: "Ju"
 summary: "Demonstrating the possibility of philosophy revolution by analoging it with scientific revolution."
 ---
 
